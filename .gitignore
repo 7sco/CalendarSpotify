@@ -1,0 +1,15 @@
+# Android Studio 
+*.iml 
+.idea 
+/.idea/workspace.xml 
+.gradle 
+/build
+.navigation 
+/captures 
+.DS_Store
+/local.properties
+/.idea/libraries
+node_modules
+package-lock.json
+*.log
+*.gz
