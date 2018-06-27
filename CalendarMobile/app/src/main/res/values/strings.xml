@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">CalendarMobile</string>
+    <string name="events">EVENTS:</string>
+    <string name="add_event">Add Event</string>
+    <string name="current_day">Current Day</string>
+    <string name="event_title">Add Title</string>
+    <string name="start_time">Start Time</string>
+    <string name="starttime">StartTime</string>
+    <string name="end_time">End Time</string>
+    <string name="year">Year</string>
+    <string name="month">Month/</string>
+    <string name="rotation_text">listBeforeRotation</string>
+    >
+</resources>

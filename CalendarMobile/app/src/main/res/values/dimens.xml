@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="twenty_textsize">20sp</dimen>
+    <dimen name="margin_sides">8dp</dimen>
+    <dimen name="textsize_eighteen">18sp</dimen>
+    <dimen name="padding_five">5dp</dimen>
+    <dimen name="margin_sides_sixteen">16dp</dimen>
+    <dimen name="margin_sides_fourty">40dp</dimen>
+    <dimen name="text_size_fifty">50sp</dimen>
+</resources>
