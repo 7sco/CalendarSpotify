@@ -1,0 +1,30 @@
+{
+  "name": "CalendarRestAPI",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node app.js"
+  },
+
+  "engines": {
+    "node": "6.2.2"
+  },
+  "engines":{
+    "noode": "6.2.2"
+  },
+
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "express-promise-router": "^3.0.2",
+    "helmet": "^3.12.1",
+    "jo": "^0.0.8",
+    "joi": "^13.4.0",
+    "mongoose": "^5.1.6",
+    "morgan": "^1.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.5"
+  }
+}
