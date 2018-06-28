@@ -1496,6 +1496,10 @@
         "source": "/Users/franciscoandrade/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/69005709bf5146c2b72ae72d181988a2/res/drawable-xhdpi-v4/abc_ic_menu_selectall_mtrl_alpha.png"
     },
     {
+        "merged": "/Users/franciscoandrade/Desktop/SpotifyChallenge/CalendarMobile/app/build/intermediates/res/merged/debug/layout_prompts.xml.flat",
+        "source": "/Users/franciscoandrade/Desktop/SpotifyChallenge/CalendarMobile/app/src/main/res/layout/prompts.xml"
+    },
+    {
         "merged": "/Users/franciscoandrade/Desktop/SpotifyChallenge/CalendarMobile/app/build/intermediates/res/merged/debug/anim_abc_tooltip_enter.xml.flat",
         "source": "/Users/franciscoandrade/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/69005709bf5146c2b72ae72d181988a2/res/anim/abc_tooltip_enter.xml"
     },

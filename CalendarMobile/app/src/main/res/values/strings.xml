@@ -17,5 +17,8 @@
     <string name="No_Connection">No Connection</string>
     <string name="id">id</string>
     <string name="select_time">Please select time.</string>
+    <string name="delete_remainder">Do you want to Delete this remainder?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
 
 </resources>

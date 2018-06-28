@@ -19,6 +19,7 @@ public interface EventContract {
         void setStartTimeTV(String startTime);
         void showTimeDialog(TimePickerDialog.OnTimeSetListener onTimeSetListener, int hour, int minute, boolean is24Hour);
         void addEventVisible();
+
     }
 
     interface Presenter{
@@ -26,6 +27,7 @@ public interface EventContract {
         void addEvent(String title, String timeStart, String timeEnd);
         void setStartTime();
         void setEndTime();
+        void deletFromDB(String idRemainder);
     }
 
 }

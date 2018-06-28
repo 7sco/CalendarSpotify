@@ -8,6 +8,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -21,4 +22,7 @@ public interface CalendarApi {
 
     @POST("/days/{id}/remainders")
     Call<PostRemainder>postRemainder(@Path("id") String id, @Body PostRemainder task);
+
+    @DELETE("/remainders/{id}")
+    Call<PostRemainder> deleteRemainder(@Path("id") String id);
 }

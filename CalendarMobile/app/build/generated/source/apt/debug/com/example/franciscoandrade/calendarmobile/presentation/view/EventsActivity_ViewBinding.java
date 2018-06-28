@@ -18,13 +18,13 @@ import java.lang.Override;
 public class EventsActivity_ViewBinding implements Unbinder {
   private EventsActivity target;
 
-  private View view2131230849;
+  private View view2131230850;
 
   private View view2131230747;
 
-  private View view2131230850;
+  private View view2131230851;
 
-  private View view2131230857;
+  private View view2131230858;
 
   @UiThread
   public EventsActivity_ViewBinding(EventsActivity target) {
@@ -41,7 +41,7 @@ public class EventsActivity_ViewBinding implements Unbinder {
     target.timeTextView = Utils.findRequiredViewAsType(source, R.id.time_textView, "field 'timeTextView'", TextView.class);
     view = Utils.findRequiredView(source, R.id.pick_Time, "field 'pickTime' and method 'onViewClicked'");
     target.pickTime = Utils.castView(view, R.id.pick_Time, "field 'pickTime'", Button.class);
-    view2131230849 = view;
+    view2131230850 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -62,7 +62,7 @@ public class EventsActivity_ViewBinding implements Unbinder {
     target.endtimeTextView = Utils.findRequiredViewAsType(source, R.id.endtime_textView, "field 'endtimeTextView'", TextView.class);
     view = Utils.findRequiredView(source, R.id.pick_TimeEnd, "field 'pickTimeEnd' and method 'onViewClicked'");
     target.pickTimeEnd = Utils.castView(view, R.id.pick_TimeEnd, "field 'pickTimeEnd'", Button.class);
-    view2131230850 = view;
+    view2131230851 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -71,7 +71,7 @@ public class EventsActivity_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.retry_button, "field 'retryButton' and method 'onViewClicked'");
     target.retryButton = Utils.castView(view, R.id.retry_button, "field 'retryButton'", Button.class);
-    view2131230857 = view;
+    view2131230858 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -98,13 +98,13 @@ public class EventsActivity_ViewBinding implements Unbinder {
     target.pickTimeEnd = null;
     target.retryButton = null;
 
-    view2131230849.setOnClickListener(null);
-    view2131230849 = null;
-    view2131230747.setOnClickListener(null);
-    view2131230747 = null;
     view2131230850.setOnClickListener(null);
     view2131230850 = null;
-    view2131230857.setOnClickListener(null);
-    view2131230857 = null;
+    view2131230747.setOnClickListener(null);
+    view2131230747 = null;
+    view2131230851.setOnClickListener(null);
+    view2131230851 = null;
+    view2131230858.setOnClickListener(null);
+    view2131230858 = null;
   }
 }

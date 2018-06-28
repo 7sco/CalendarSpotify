@@ -1,7 +1,9 @@
 package com.example.franciscoandrade.calendarmobile.presentation.view;
 
+import android.app.AlertDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -9,6 +11,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,9 +20,10 @@ import android.widget.Toast;
 
 import com.example.franciscoandrade.calendarmobile.R;
 import com.example.franciscoandrade.calendarmobile.data.api.ClientService;
-import com.example.franciscoandrade.calendarmobile.data.model.PostRemainder;
 import com.example.franciscoandrade.calendarmobile.data.model.Remainder;
+import com.example.franciscoandrade.calendarmobile.presentation.interfaces.DeleteRemainderInterface;
 import com.example.franciscoandrade.calendarmobile.presentation.interfaces.EventContract;
+import com.example.franciscoandrade.calendarmobile.presentation.interfaces.LaunchActivityInterface;
 import com.example.franciscoandrade.calendarmobile.presentation.presenter.EventActivityPresenter;
 import com.example.franciscoandrade.calendarmobile.presentation.recyclerView.EventAdapter;
 
@@ -29,7 +33,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class EventsActivity extends AppCompatActivity implements EventContract.View {
+public class EventsActivity extends AppCompatActivity implements EventContract.View, DeleteRemainderInterface {
 
     @BindView(R.id.currentDay) TextView currentDay;
     @BindView(R.id.event_title) EditText eventTitle;
@@ -132,14 +136,14 @@ public class EventsActivity extends AppCompatActivity implements EventContract.V
 
     @Override
     public void setRecyclerView(List<Remainder> remainderList) {
-        adapter = new EventAdapter(remainderList);
+        adapter = new EventAdapter(remainderList, this);
         eventsRv.setAdapter(adapter);
         eventsRv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
     }
 
     @Override
     public void setRecyclerViewEmpty() {
-        adapter = new EventAdapter();
+        adapter = new EventAdapter(this);
         eventsRv.setAdapter(adapter);
     }
 
@@ -183,6 +187,30 @@ public class EventsActivity extends AppCompatActivity implements EventContract.V
         addEventBtn.setVisibility(View.VISIBLE);
     }
 
+
+    public void startAlertDialog(final String idRemainder, final int position) {
+        LayoutInflater li = LayoutInflater.from(this);
+        View promptsView = li.inflate(R.layout.prompts, null);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setView(promptsView);
+        alertDialogBuilder
+                .setCancelable(false)
+                .setPositiveButton(getResources().getText(R.string.yes),
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                presenter.deletFromDB(idRemainder);
+                                adapter.deleteRemainder(position);
+                            }
+                        })
+                .setNegativeButton(getResources().getText(R.string.no), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -200,5 +228,11 @@ public class EventsActivity extends AppCompatActivity implements EventContract.V
     @Override
     public void onBackPressed() {
         finish();
+    }
+
+
+    @Override
+    public void passData(String id, int position) {
+        startAlertDialog(id, position);
     }
 }

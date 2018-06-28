@@ -64,8 +64,8 @@ public class EventActivityPresenter implements EventContract.Presenter {
         remainder.setStarttime(timeStart);
         remainder.setEndtime(timeEnd);
         remainder.setTitle(title);
-        if(remainder.getTitle().equals("") ){
-            view.showToast("Please add a title");
+        if(remainder.getTitle().equals("") || remainder.getStarttime().equals("") ||remainder.getEndtime().equals("") ){
+            view.showToast("Please fill all the fields");
         }
         else {
             postEvent(remainder);
@@ -92,9 +92,7 @@ public class EventActivityPresenter implements EventContract.Presenter {
 
             @Override
             public void onFailure(Call<PostRemainder> call, Throwable t) {
-                Log.d(TAG, "onFailure: ");
                 view.showToast("Error Whe Trying to add remainder");
-
             }
         });
 
@@ -146,6 +144,26 @@ public class EventActivityPresenter implements EventContract.Presenter {
 
         setTimeDialog(onTimeSetListener);
 
+    }
+
+
+
+    @Override
+    public void deletFromDB(String idRemainder) {
+        CalendarApi calendarApi= clientService.getCalendarApi();
+        Call<PostRemainder> calendarCall= calendarApi.deleteRemainder(idRemainder);
+        calendarCall.enqueue(new Callback<PostRemainder>() {
+            @Override
+            public void onResponse(Call<PostRemainder> call, Response<PostRemainder> response) {
+                view.showToast("DELETED!!");
+
+            }
+
+            @Override
+            public void onFailure(Call<PostRemainder> call, Throwable t) {
+                view.showToast("Cant Delete!");
+            }
+        });
     }
 
     private StringBuilder appendTime(int hour, int minute) {

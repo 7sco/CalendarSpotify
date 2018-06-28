@@ -1,7 +1,6 @@
 package com.example.franciscoandrade.calendarmobile.presentation.interfaces;
 
 import com.example.franciscoandrade.calendarmobile.data.model.CalendarResponse;
-
 import java.util.List;
 
 public interface CalendarContract {
@@ -15,6 +14,5 @@ public interface CalendarContract {
 
     interface Presenter{
         void getDaysList();
-
     }
 }

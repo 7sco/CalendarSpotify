@@ -18,7 +18,7 @@ import java.lang.Override;
 public class CalendarActivity_ViewBinding implements Unbinder {
   private CalendarActivity target;
 
-  private View view2131230836;
+  private View view2131230837;
 
   @UiThread
   public CalendarActivity_ViewBinding(CalendarActivity target) {
@@ -36,7 +36,7 @@ public class CalendarActivity_ViewBinding implements Unbinder {
     target.toolbar = Utils.findRequiredViewAsType(source, R.id.toolbar, "field 'toolbar'", Toolbar.class);
     view = Utils.findRequiredView(source, R.id.noInternet_btn, "field 'noInternetBtn' and method 'onViewClicked'");
     target.noInternetBtn = Utils.castView(view, R.id.noInternet_btn, "field 'noInternetBtn'", Button.class);
-    view2131230836 = view;
+    view2131230837 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -58,7 +58,7 @@ public class CalendarActivity_ViewBinding implements Unbinder {
     target.toolbar = null;
     target.noInternetBtn = null;
 
-    view2131230836.setOnClickListener(null);
-    view2131230836 = null;
+    view2131230837.setOnClickListener(null);
+    view2131230837 = null;
   }
 }
