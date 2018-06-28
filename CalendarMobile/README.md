@@ -1,8 +1,14 @@
-# OkCupid_Challenge
-OkCupid Coding challenge, is an application that simulates “like” actions. When a user is "liked”, the user’s card becomes highlighted. Users can like and unlike a person with a click of a button. When the image is unliked the highlighted image turns off. The Application also supports screen orientation.
+# Sample Calendar App
+Calendar App, is an application that currently shows the month of June.
+A user has the ability to add events on each day and delete events.
+All the data is being store in a backend server
 
+# End Point
+https://calendarandroid.herokuapp.com/days
+Backend was built using Node.js, Express, Mongoose and is being hosted with Heroku.
+# Sample Calendar App
 <p align="center">
-<img src="https://user-images.githubusercontent.com/21040125/40685057-32934f32-6361-11e8-9053-d5b3f5274199.png" width="300">
-<img src="https://user-images.githubusercontent.com/21040125/40686483-7a9beac4-6365-11e8-95e8-21bf209e5e3b.png" width="400" height="250">
+<img src="https://user-images.githubusercontent.com/21040125/42026594-7cd42db4-7a95-11e8-9299-fdfeed456279.png" width="300">
+<img src="https://user-images.githubusercontent.com/21040125/42026633-9ca094de-7a95-11e8-8afa-f291d963d622.png" width="300">
 </p>
 
