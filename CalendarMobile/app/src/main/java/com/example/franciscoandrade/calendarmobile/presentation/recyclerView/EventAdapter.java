@@ -2,17 +2,14 @@ package com.example.franciscoandrade.calendarmobile.presentation.recyclerView;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.franciscoandrade.calendarmobile.R;
-import com.example.franciscoandrade.calendarmobile.data.model.PostRemainder;
 import com.example.franciscoandrade.calendarmobile.data.model.Remainder;
 import com.example.franciscoandrade.calendarmobile.presentation.interfaces.DeleteRemainderInterface;
-import com.example.franciscoandrade.calendarmobile.presentation.interfaces.LaunchActivityInterface;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +19,7 @@ import butterknife.ButterKnife;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHolder> {
     private List<Remainder> listRemainders;
-    DeleteRemainderInterface deleteInterface;
+    private DeleteRemainderInterface deleteInterface;
 
     public EventAdapter(List<Remainder> listRemainders, DeleteRemainderInterface deleteInterface) {
         this.listRemainders = listRemainders;
@@ -70,12 +67,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
     }
 
     public class EventViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        @BindView(R.id.title_tv)
-        TextView titleTv;
-        @BindView(R.id.time_tv)
-        TextView timeTv;
-        private String id;
 
+        @BindView(R.id.title_tv) TextView titleTv;
+        @BindView(R.id.time_tv) TextView timeTv;
+        private String id;
 
         public EventViewHolder(View itemView) {
             super(itemView);
@@ -84,8 +79,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         }
 
         public void onBind(Remainder remainder) {
-            Log.d("==", "onBind: ID: "+remainder.getId());
-            Log.d("==", "onBind: "+getAdapterPosition());
             id=remainder.getId();
             if (remainder!= null && remainder.getEndtime()!=null){
                 String timePeriod;

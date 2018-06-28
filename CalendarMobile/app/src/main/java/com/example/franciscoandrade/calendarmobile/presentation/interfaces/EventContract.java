@@ -1,17 +1,13 @@
 package com.example.franciscoandrade.calendarmobile.presentation.interfaces;
 
 import android.app.TimePickerDialog;
-
-import com.example.franciscoandrade.calendarmobile.data.model.PostRemainder;
 import com.example.franciscoandrade.calendarmobile.data.model.Remainder;
-
 import java.util.List;
 
 public interface EventContract {
 
     interface View{
         void setRecyclerView(List<Remainder> remainderList);
-        void setRecyclerViewEmpty();
         void onEventAdded();
         void addRemainderToList(Remainder remainder);
         void showToast(String message);

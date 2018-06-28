@@ -23,7 +23,6 @@ import com.example.franciscoandrade.calendarmobile.data.api.ClientService;
 import com.example.franciscoandrade.calendarmobile.data.model.Remainder;
 import com.example.franciscoandrade.calendarmobile.presentation.interfaces.DeleteRemainderInterface;
 import com.example.franciscoandrade.calendarmobile.presentation.interfaces.EventContract;
-import com.example.franciscoandrade.calendarmobile.presentation.interfaces.LaunchActivityInterface;
 import com.example.franciscoandrade.calendarmobile.presentation.presenter.EventActivityPresenter;
 import com.example.franciscoandrade.calendarmobile.presentation.recyclerView.EventAdapter;
 
@@ -141,11 +140,6 @@ public class EventsActivity extends AppCompatActivity implements EventContract.V
         eventsRv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
     }
 
-    @Override
-    public void setRecyclerViewEmpty() {
-        adapter = new EventAdapter(this);
-        eventsRv.setAdapter(adapter);
-    }
 
     @Override
     public void onEventAdded() {

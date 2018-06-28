@@ -1,4 +1,4 @@
-#Thu Jun 28 05:00:57 EDT 2018
+#Thu Jun 28 05:16:39 EDT 2018
 base.0=/Users/franciscoandrade/Desktop/SpotifyChallenge/CalendarMobile/app/build/intermediates/transforms/dexMerger/debug/0
 path.0=classes.dex
 renamed.0=classes.dex

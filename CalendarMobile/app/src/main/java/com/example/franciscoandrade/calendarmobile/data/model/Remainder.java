@@ -24,6 +24,30 @@ public class Remainder {
         return dayremainder;
     }
 
+    public void setV(int v) {
+        V = v;
+    }
+
+    public void setDayremainder(String dayremainder) {
+        this.dayremainder = dayremainder;
+    }
+
+    public void setEndtime(String endtime) {
+        this.endtime = endtime;
+    }
+
+    public void setStarttime(String starttime) {
+        this.starttime = starttime;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setId(String id) {
+        Id = id;
+    }
+
     public String getEndtime() {
         return endtime;
     }

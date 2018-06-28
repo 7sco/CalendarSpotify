@@ -16,12 +16,10 @@ import butterknife.ButterKnife;
 public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.CalendarViewHolder> {
 
     private List<CalendarResponse> listDay;
-    private String month;
     private LaunchActivityInterface launcActivity;
 
     public CalendarAdapter(List<CalendarResponse> listDay, String month, LaunchActivityInterface launchActivityInterface) {
         this.listDay = listDay;
-        this.month=month;
         launcActivity= launchActivityInterface;
     }
 
@@ -60,10 +58,10 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.Calend
         public void bind(CalendarResponse day) {
             itemViewDay = day;
             dayTV.setText(day.getWeekday());
-            number.setText(day.getMonthday() + "");
+            number.setText(String.valueOf(day.getMonthday()));
             if (day.getRemainder()!= null) {
                 remainders.setVisibility(View.VISIBLE);
-                remainders.setText(day.getRemainder().size()+ "");
+                remainders.setText(String.valueOf(day.getRemainder().size()));
                 remainders_line.setVisibility(View.VISIBLE);
             }
         }
@@ -72,6 +70,5 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.Calend
         public void onClick(View v) {
             launcActivity.passData(itemViewDay.getId());
         }
-
     }
 }

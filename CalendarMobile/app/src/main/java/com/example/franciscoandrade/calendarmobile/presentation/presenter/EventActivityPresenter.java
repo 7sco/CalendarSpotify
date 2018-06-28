@@ -1,9 +1,6 @@
 package com.example.franciscoandrade.calendarmobile.presentation.presenter;
 
 import android.app.TimePickerDialog;
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.util.Log;
 import android.widget.TimePicker;
 
@@ -81,7 +78,6 @@ public class EventActivityPresenter implements EventContract.Presenter {
         postRemainder.setStarttime(remainder.getStarttime());
         postRemainder.setEndtime(remainder.getEndtime());
         postRemainder.setTitle(remainder.getTitle());
-
         CalendarApi calendarApi= clientService.getCalendarApi();
         Call<PostRemainder> calendarCall= calendarApi.postRemainder(id, postRemainder);
         calendarCall.enqueue(new Callback<PostRemainder>() {
@@ -143,10 +139,7 @@ public class EventActivityPresenter implements EventContract.Presenter {
         };
 
         setTimeDialog(onTimeSetListener);
-
     }
-
-
 
     @Override
     public void deletFromDB(String idRemainder) {
@@ -156,7 +149,6 @@ public class EventActivityPresenter implements EventContract.Presenter {
             @Override
             public void onResponse(Call<PostRemainder> call, Response<PostRemainder> response) {
                 view.showToast("DELETED!!");
-
             }
 
             @Override
