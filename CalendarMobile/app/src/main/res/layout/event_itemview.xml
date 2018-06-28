@@ -20,7 +20,7 @@
     <TextView
         android:id="@+id/time_tv"
         android:layout_width="0dp"
-        android:layout_weight="0.7"
+        android:layout_weight="0.8"
         android:layout_height="wrap_content"
         android:text="Title"
         android:textColor="@color/colorAccent"

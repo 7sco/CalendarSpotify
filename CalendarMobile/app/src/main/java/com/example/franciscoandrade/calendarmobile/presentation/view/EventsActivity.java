@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,12 +16,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.franciscoandrade.calendarmobile.R;
-import com.example.franciscoandrade.calendarmobile.model.Remainder;
-import com.example.franciscoandrade.calendarmobile.presentation.EventContract;
+import com.example.franciscoandrade.calendarmobile.data.api.ClientService;
+import com.example.franciscoandrade.calendarmobile.data.model.PostRemainder;
+import com.example.franciscoandrade.calendarmobile.data.model.Remainder;
+import com.example.franciscoandrade.calendarmobile.presentation.interfaces.EventContract;
 import com.example.franciscoandrade.calendarmobile.presentation.presenter.EventActivityPresenter;
 import com.example.franciscoandrade.calendarmobile.presentation.recyclerView.EventAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -31,32 +31,21 @@ import butterknife.OnClick;
 
 public class EventsActivity extends AppCompatActivity implements EventContract.View {
 
+    @BindView(R.id.currentDay) TextView currentDay;
+    @BindView(R.id.event_title) EditText eventTitle;
+    @BindView(R.id.time_textView) TextView timeTextView;
+    @BindView(R.id.pick_Time) Button pickTime;
+    @BindView(R.id.addEvent_btn) Button addEventBtn;
+    @BindView(R.id.event_info) TextView eventInfo;
+    @BindView(R.id.events_rv) RecyclerView eventsRv;
+    @BindView(R.id.endtime_textView) TextView endtimeTextView;
+    @BindView(R.id.pick_TimeEnd) Button pickTimeEnd;
+    @BindView(R.id.retry_button) Button retryButton;
 
-    @BindView(R.id.currentDay)
-    TextView currentDay;
-    @BindView(R.id.event_title)
-    EditText eventTitle;
-    @BindView(R.id.time_textView)
-    TextView timeTextView;
-    @BindView(R.id.pick_Time)
-    Button pickTime;
-    @BindView(R.id.addEvent_btn)
-    Button addEventBtn;
-    @BindView(R.id.event_info)
-    TextView eventInfo;
-    EventAdapter adapter;
-    @BindView(R.id.events_rv)
-    RecyclerView eventsRv;
-    @BindView(R.id.endtime_textView)
-    TextView endtimeTextView;
-    @BindView(R.id.pick_TimeEnd)
-    Button pickTimeEnd;
-    @BindView(R.id.retry_button)
-    Button retryButton;
-
-    private int remainderTotal;
+    private EventAdapter adapter;
     private EventContract.Presenter presenter;
-    private int currentDayNumber;
+    private String id;
+    private ClientService clientService = new ClientService("https://calendarandroid.herokuapp.com");
 
 
     @Override
@@ -65,63 +54,47 @@ public class EventsActivity extends AppCompatActivity implements EventContract.V
         setContentView(R.layout.activity_events);
         ButterKnife.bind(this);
 
-        presenter = new EventActivityPresenter(this);
-        int dayNumber = getIntentData();
-        currentDayNumber=dayNumber;
-        Log.d("==", "onCreate: DAY#: "+dayNumber);
+        presenter = new EventActivityPresenter(this, clientService);
         if(savedInstanceState!=null) {
-            String title= savedInstanceState.getString("title");
-            String startTime= savedInstanceState.getString("startTime");
-            String endTime= savedInstanceState.getString("endTime");
+            String title= savedInstanceState.getString(getResources().getString(R.string.title));
+            String startTime= savedInstanceState.getString(getResources().getString(R.string.startTime));
+            String endTime= savedInstanceState.getString(getResources().getString(R.string.endTime));
             eventTitle.setText(title);
             timeTextView.setText(startTime);
             endtimeTextView.setText(endTime);
-
         }
-
-        getRemainders(dayNumber);
-
-
-
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         if (eventTitle.getText() !=null){
-            outState.putString("title", eventTitle.getText().toString());
+            outState.putString(getResources().getString(R.string.title), eventTitle.getText().toString());
         }
         if (timeTextView.getText()!=null) {
-            outState.putString("startTime", timeTextView.getText().toString());
+            outState.putString(getResources().getString(R.string.startTime), timeTextView.getText().toString());
         }
         if (endtimeTextView.getText()!=null) {
-            outState.putString("endTime", endtimeTextView.getText().toString());
+            outState.putString(getResources().getString(R.string.endTime), endtimeTextView.getText().toString());
         }
         super.onSaveInstanceState(outState);
     }
 
 
-    private void getRemainders(int dayNumber) {
+    private void getRemainders() {
         if (isNetworkAvailable()) {
-            Log.d("==", "getRemainders: "+dayNumber);
-            presenter.getEventsList(dayNumber);
+            presenter.getEventsList(id );
             retryButton.setVisibility(View.INVISIBLE);
         } else {
             retryButton.setVisibility(View.VISIBLE);
             addEventBtn.setVisibility(View.INVISIBLE);
-            showToast("No Connection");
+            showToast(getResources().getString(R.string.No_Connection));
 
         }
     }
 
-    private int getIntentData() {
+    private void getIntentData() {
         Intent i = getIntent();
-        String day = i.getExtras().getString("weekDay");
-        String month = i.getExtras().getString("month");
-        int dayNumber = i.getExtras().getInt("dayNumber");
-        remainderTotal = i.getExtras().getInt("remainderTotal");
-        String current = day + ", " + month + " " + (dayNumber) + ", 2018";
-        currentDay.setText(current);
-        return dayNumber--;
+        id = i.getExtras().getString(getResources().getString(R.string.id));
     }
 
 
@@ -132,17 +105,28 @@ public class EventsActivity extends AppCompatActivity implements EventContract.V
                 presenter.setStartTime();
                 break;
             case R.id.addEvent_btn:
-                String title = eventTitle.getText().toString();
-                String timeStart = timeTextView.getText().toString();
-                String timeEnd = endtimeTextView.getText().toString();
-                presenter.addEvent(title, timeStart, timeEnd);
+
+                addEvent();
+
                 break;
             case R.id.pick_TimeEnd:
                 presenter.setEndTime();
                 break;
             case R.id.retry_button:
-                getRemainders(currentDayNumber);
+                getRemainders();
                 break;
+        }
+    }
+
+    private void addEvent() {
+        if(isNetworkAvailable()){
+            String title = eventTitle.getText().toString();
+            String timeStart = timeTextView.getText().toString();
+            String timeEnd = endtimeTextView.getText().toString();
+            presenter.addEvent(title, timeStart, timeEnd);
+        }
+        else {
+            showToast("No Internet");
         }
     }
 
@@ -151,7 +135,6 @@ public class EventsActivity extends AppCompatActivity implements EventContract.V
         adapter = new EventAdapter(remainderList);
         eventsRv.setAdapter(adapter);
         eventsRv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        Log.d("===", "onBackPressed: StartSize= "+eventsRv.getAdapter().getItemCount());
     }
 
     @Override
@@ -191,7 +174,7 @@ public class EventsActivity extends AppCompatActivity implements EventContract.V
     @Override
     public void showTimeDialog(TimePickerDialog.OnTimeSetListener onTimeSetListener, int hour, int minute, boolean is24Hour) {
         TimePickerDialog timePickerDialog = new TimePickerDialog(EventsActivity.this, onTimeSetListener, hour, minute, is24Hour);
-        timePickerDialog.setTitle("Please select time.");
+        timePickerDialog.setTitle(getResources().getString(R.string.select_time));
         timePickerDialog.show();
     }
 
@@ -208,16 +191,14 @@ public class EventsActivity extends AppCompatActivity implements EventContract.V
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        getIntentData();
+        getRemainders();
+    }
+
+    @Override
     public void onBackPressed() {
-        int itemCount=eventsRv.getAdapter().getItemCount();
-        int num=currentDayNumber;
-        Intent i =getIntent();
-        Bundle bundle = new Bundle();
-        Log.d("===", "onBackPressed: EndSize= "+eventsRv.getAdapter().getItemCount());
-        bundle.putInt("size", itemCount);
-        bundle.putInt("dayNumber", num);
-        i.putExtras(bundle);
-        setResult(RESULT_OK, i);
         finish();
     }
 }

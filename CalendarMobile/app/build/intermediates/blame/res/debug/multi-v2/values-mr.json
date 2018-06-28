@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/franciscoandrade/Desktop/CodeChallenge/Spotify/CalendarMobile/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-mr/values-mr.xml",
+            "outputFile": "/Users/franciscoandrade/Desktop/SpotifyChallenge/CalendarMobile/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-mr/values-mr.xml",
             "map": [
                 {
                     "source": "/Users/franciscoandrade/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/3b171bd5f2ef3ccfba07821b0537071f/res/values-mr/values.xml",

@@ -8,7 +8,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.franciscoandrade.calendarmobile.R;
-import com.example.franciscoandrade.calendarmobile.model.Remainder;
+import com.example.franciscoandrade.calendarmobile.data.model.PostRemainder;
+import com.example.franciscoandrade.calendarmobile.data.model.Remainder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
     @Override
     public void onBindViewHolder(@NonNull EventViewHolder holder, int position) {
         Remainder remainder = listRemainders.get(position);
+
         holder.onBind(remainder);
     }
 
@@ -69,12 +71,12 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         }
 
         public void onBind(Remainder remainder) {
-            if (remainder!= null && remainder.getEndTime()!=null){
+            if (remainder!= null && remainder.getEndtime()!=null){
                 String timePeriod;
-                if(remainder.getSatartTime().equals("") && remainder.getEndTime().equals("")){
+                if(remainder.getStarttime().equals("") && remainder.getEndtime().equals("")){
                     timePeriod= "All Day";
                 }else {
-                    timePeriod=remainder.getSatartTime()+" / "+remainder.getEndTime();
+                    timePeriod=remainder.getStarttime()+" / "+remainder.getEndtime();
                 }
                 titleTv.setText(remainder.getTitle());
                 timeTv.setText(timePeriod);
