@@ -3,8 +3,11 @@ Calendar App, is an application that currently shows the month of June.
 A user has the ability to add events on each day and delete events.
 All the data is being store in a backend server
 
+## Note
+Days are showing in a random order, backend has some issues and is not showing data in order
+
 # End Point
-https://calendarandroid.herokuapp.com/days
+https://calendarandroid.herokuapp.com/days <br>
 Backend was built using Node.js, Express, Mongoose and is being hosted with Heroku.
 # Sample Calendar App
 <p align="center">
