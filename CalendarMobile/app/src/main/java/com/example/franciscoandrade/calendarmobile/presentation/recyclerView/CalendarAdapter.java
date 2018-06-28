@@ -68,7 +68,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.Calend
 
         @Override
         public void onClick(View v) {
-            launcActivity.passData(itemViewDay.getId());
+            launcActivity.passData(itemViewDay.getId(), itemViewDay.getWeekday(), itemViewDay.getMonthday(), itemViewDay.getMonth());
         }
     }
 }

@@ -20,5 +20,9 @@
     <string name="delete_remainder">Do you want to Delete this remainder?</string>
     <string name="no">No</string>
     <string name="yes">Yes</string>
+    <string name="week_day">weekDay</string>
+    <string name="month_day">monthDay</string>
+    <string name="month_text">month/</string>
+
 
 </resources>

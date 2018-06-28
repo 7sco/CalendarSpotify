@@ -49,6 +49,8 @@ public class EventsActivity extends AppCompatActivity implements EventContract.V
     private EventContract.Presenter presenter;
     private String id;
     private ClientService clientService = new ClientService("https://calendarandroid.herokuapp.com");
+    private String weekDay, month;
+    private int monthDay;
 
 
     @Override
@@ -98,6 +100,12 @@ public class EventsActivity extends AppCompatActivity implements EventContract.V
     private void getIntentData() {
         Intent i = getIntent();
         id = i.getExtras().getString(getResources().getString(R.string.id));
+        weekDay = i.getExtras().getString(getResources().getString(R.string.week_day));
+        monthDay = i.getExtras().getInt(getResources().getString(R.string.month_day));
+        month = i.getExtras().getString(getResources().getString(R.string.month));
+        String current=weekDay+", "+month+" "+monthDay+", 2018";
+        currentDay.setText(current);
+
     }
 
 

@@ -101,9 +101,12 @@ public class CalendarActivity extends AppCompatActivity implements CalendarContr
     }
 
     @Override
-    public void passData(String id) {
+    public void passData(String id,String weekDay, int monthDay , String month) {
         Intent view = new Intent(this, EventsActivity.class);
         view.putExtra(getResources().getString(R.string.id), id);
+        view.putExtra(getResources().getString(R.string.week_day), weekDay);
+        view.putExtra(getResources().getString(R.string.month_day), monthDay);
+        view.putExtra(getResources().getString(R.string.month), month);
         startActivityForResult(view, 1);
     }
 
@@ -112,4 +115,6 @@ public class CalendarActivity extends AppCompatActivity implements CalendarContr
         super.onResume();
         getData();
     }
+
+
 }
